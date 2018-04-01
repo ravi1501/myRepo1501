@@ -1,0 +1,13 @@
+class CreateUserRegisters < ActiveRecord::Migration[5.1]
+  def change
+    create_table :user_registers do |t|
+      t.string :string
+      t.string :fname
+      t.string :lname
+      t.string :email
+      t.string :password_digest
+
+      t.timestamps
+    end
+  end
+end

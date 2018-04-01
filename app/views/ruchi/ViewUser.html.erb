@@ -1,0 +1,74 @@
+<script>
+
+$(document).ready(function(){
+
+GetAllUsers();
+
+});
+
+
+function GetAllUsers()
+{
+//alert('IN')
+$.ajax({
+  type:"post",
+  url:"/ruchi/JsonTest",
+  dataType:"json",
+  contentType: 'application/json; charset=utf-8',
+  //data: {some_parameter: 'hello'},
+  success:function(result){
+    var res='';
+    $("#mytable").html("");
+    res+="<table class='table table-bordered table-striped'>";
+    res+="<tr><th><b>First Name</b></th><th><b>Last Name</b></th><th><b>Email</b></th></tr>";
+    for(var i=0;i<result.length;i++)
+    {
+      res+="<tr>";
+      res+="<td id='colFNM"+i+"'>"+result[i].fname+"</td>";
+      res+="<td id='colLNM"+i+"'> "+result[i].lname+"</td>";
+      res+="<td id='colEmail"+i+"'>"+result[i].email+"</td>";
+      res+="<td><a class='btn btn-warning' onclick='edit("+result[i].id+","+i+")'>Edit</a> | <a class='btn btn-danger' onclick=delete("+result[i].id+","+i+")' >Delete</a></td>";
+      res+="</tr>";
+    }
+    res+="</table>";
+    $("#mytable").html(res);
+    //alert(JSON.stringify(result))
+    //alert(result);
+  }
+})
+
+}
+</script>
+<div class="container">
+<div class="row">
+<h1 style="margin-top:100px" >VIEW USERS</h1>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+<div id="mytable">
+</div>
+
+<table style="display:none" class="table table-bordered table-striped">
+<tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th> Email</th>
+  <th>Pssword</th>
+  <th>Action</th>
+</tr>
+<%@test.each do |test|%>
+<tr>
+  
+  <td><%=test.fname%></td>
+  <td><%=test.lname%></td>
+  <td><%=test.email%></td>
+  <td><%=test.pass%></td>
+  <td><%= link_to "Edit" ,'/ruchi/editm' ,:class=> "btn btn-info" %></td>
+
+</tr>
+<%end%>
+</table>
+
+</div>
+
+</div>
+</div>

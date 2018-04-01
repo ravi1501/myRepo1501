@@ -1,3 +1,6 @@
+
+
+
 <style>
 
 @import "compass/css3";
@@ -200,7 +203,8 @@ textarea {
 <center>
 <div class="row">
 
-
+<br>
+<br>
 
 <h1>Welcome To My Ruby App</h1>
 
@@ -218,28 +222,28 @@ textarea {
         <div id="signup">   
           <h1>Sign Up for Free</h1>
           
-          <form action="/ruchi/register" method="post">
-          
+          <form action="/ruchi/register" method="POST">
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
           <div class="top-row">
             <div class="field-wrap">
              
-              <input type="text" placeholder="First Name" class="form-control" required autocomplete="off" />
+              <input type="text" name="user[fname]" placeholder="First Name" class="form-control" required autocomplete="off" />
             </div>
         
             <div class="field-wrap">
              
-              <input type="text" placeholder="Last Name" class="form-control" required autocomplete="off"/>
+              <input type="text" name="user[lname]" placeholder="Last Name" class="form-control" required autocomplete="off"/>
             </div>
           </div>
 
           <div class="field-wrap">
           
-            <input type="email" placeholder="Email" class="form-control" required autocomplete="off"/>
+            <input type="email" name="user[email]" placeholder="Email" class="form-control" required autocomplete="off"/>
           </div>
           
           <div class="field-wrap">
           
-            <input type="password" placeholder="Password" class="form-control" required autocomplete="off"/>
+            <input type="password" name="user[pass]" placeholder="Password" class="form-control" required autocomplete="off"/>
           </div>
           
           <button type="submit" class="btn btn-info btn-lg"/>Get Started</button>
