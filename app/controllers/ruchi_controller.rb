@@ -4,6 +4,16 @@ class RuchiController < ApplicationController
   #respond_to :js, :json, :html
   layout 'MyLayout'
   def index
+    @title = "Sign up"
+  end
+
+  def showLogin
+    @title = "Sign In"
+  end
+
+  #SignUP page
+  def signup
+    @title = "Sign up"
   end
 
   def register
@@ -11,7 +21,7 @@ class RuchiController < ApplicationController
     reg=User.new(user_params)
     if reg.save
       session[:user_id]=reg.id
-      redirect_to '/'
+      redirect_to '/ruchi/showLogin'
     else
       flash[:register_error]=reg.errors.full_messages
     end
@@ -32,6 +42,7 @@ class RuchiController < ApplicationController
 
 
   def ViewUser
+    @title = "User"
 
     @test=User.all
 

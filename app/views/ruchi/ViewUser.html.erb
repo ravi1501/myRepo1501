@@ -17,6 +17,15 @@ $.ajax({
   contentType: 'application/json; charset=utf-8',
   //data: {some_parameter: 'hello'},
   success:function(result){
+    if(result=="")
+    {
+      $("#mytable").html("<center><div class='alert alert-danger'> NO USER FOUND</div></center>");
+    }
+    else
+    {
+
+
+
     var res='';
     $("#mytable").html("");
     res+="<table class='table table-bordered table-striped'>";
@@ -32,8 +41,7 @@ $.ajax({
     }
     res+="</table>";
     $("#mytable").html(res);
-    //alert(JSON.stringify(result))
-    //alert(result);
+    }
   }
 })
 
