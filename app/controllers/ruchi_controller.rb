@@ -57,7 +57,8 @@ class RuchiController < ApplicationController
 
   #Login Functionality
   def login
-   # byebug
+   
+    byebug
     txtemail = f_params[:email]
     txtpass = f_params[:pass]
     #p 'User ID '+txtemail
@@ -66,13 +67,13 @@ class RuchiController < ApplicationController
 
     
     if(txtpass == dearUser.pass)
-      session[:user_id]=dearUser.id
-      session[:mail]=dearUser.email
+      session["userid"]=dearUser.id
+      session[:user_email]=dearUser.email
       
       userid= dearUser.id
 
       redirect_to "/appuser/index?user="+userid.to_s
-      
+
     else
       redirect_to '/users/showLogin?error=1'
     end
