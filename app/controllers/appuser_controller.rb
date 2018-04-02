@@ -1,14 +1,28 @@
 class AppuserController < ApplicationController
   protect_from_forgery
   layout 'appuserLayout'
-  def index
-    byebug
-    # @current_user = User.find(session[:user_id])
-    p session["userid"]
-    if(session["userid"].to_s=="")
-      redirect_to '/'
-    else
 
+
+  def index
+    #byebug
+    session[:ravi]=params[:user]
+    dearUser = User.where(id: params[:user]).first
+    #p "mY PARAMETER==========" +params[:user].to_s
+
+   
+
+    if(session[:ravi]!=nil)
+      @title=dearUser.fname.to_s  
+      @id=dearUser.id  
+    else
+      redirect_to '/'
     end
   end
+
+  def destroy
+    reset_session
+    redirect_to "/"
+  end
+
+
 end

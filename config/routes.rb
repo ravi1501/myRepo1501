@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-
- 
-
   get 'appuser/index'
 
   root 'my_home#index'
@@ -23,6 +20,8 @@ Rails.application.routes.draw do
   get "ruchi/ViewUser"
   # Ajax Call 
   post "ruchi/JsonTest"
+  # Show Edit Page
   get "ruchi/editm"
+  #Login View
   post "ruchi/login"
 end

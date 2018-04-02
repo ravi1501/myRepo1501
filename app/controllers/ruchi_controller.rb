@@ -21,10 +21,7 @@ class RuchiController < ApplicationController
     tpass= user_params[:pass]
     trepass= user_params[:repass]  
     if(tpass == trepass)
-      # p "pasword match"
-      # p user_params[:pass]
-      # p user_params[:repass]
-      # p ">>>>>>>>>>>>>>>>>>>>"
+      
       reg=User.new(user_params)
 
       if reg.save
@@ -41,8 +38,7 @@ class RuchiController < ApplicationController
     
   end
 
-  
-  #respond_to :js, :json, :html
+ 
   def JsonTest
     #byebug
     @test=User.all
@@ -58,7 +54,7 @@ class RuchiController < ApplicationController
   #Login Functionality
   def login
    
-    byebug
+    #byebug
     txtemail = f_params[:email]
     txtpass = f_params[:pass]
     #p 'User ID '+txtemail
@@ -67,9 +63,9 @@ class RuchiController < ApplicationController
 
     
     if(txtpass == dearUser.pass)
-      session["userid"]=dearUser.id
+      session[:ravi]=dearUser.id
       session[:user_email]=dearUser.email
-      
+    #  p "--------------ruchi controller---------------"+ session[:ravi].to_s
       userid= dearUser.id
 
       redirect_to "/appuser/index?user="+userid.to_s

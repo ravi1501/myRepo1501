@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Ruby App | <%=@title%></title>
+  <title>Welcome - <%=@title%></title>
   <%= csrf_meta_tag %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application"  %>
+ 
 </head>
 <body>
 
@@ -24,7 +23,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/appuser/index?user=<%=session[:user_id]%>">Das Vidania</a>
+            <a class="navbar-brand" href="/appuser/index?user=<%=@id%>">Das Vidania</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -46,7 +45,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
             
-            <li><a href="/appuser/logout">SignOut</a></li>
+            <li><a href="/appuser/destroy">SignOut</a></li>
            
               <%# <li><a href="../navbar-static-top/">Static top</a></li> %>
               <%# <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> %>
