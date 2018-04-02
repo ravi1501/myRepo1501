@@ -1,4 +1,11 @@
 $(document).ready(function(){
+
+        
+
+
+
+
+
     $("#fname").keypress(function(event){
         var inputValue = event.which;
         // allow letters and whitespaces only.

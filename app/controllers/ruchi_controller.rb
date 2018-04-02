@@ -17,14 +17,28 @@ class RuchiController < ApplicationController
   end
 
   def register
-    #byebug
-    reg=User.new(user_params)
-    if reg.save
-      session[:user_id]=reg.id
-      redirect_to '/ruchi/showLogin'
+
+    tpass= user_params[:pass]
+    trepass= user_params[:repass]  
+    if(tpass == trepass)
+      # p "pasword match"
+      # p user_params[:pass]
+      # p user_params[:repass]
+      # p ">>>>>>>>>>>>>>>>>>>>"
+      reg=User.new(user_params)
+
+      if reg.save
+        # p reg.id
+        redirect_to '/ruchi/showLogin'
+      else
+        flash[:register_error]=reg.errors.full_messages
+      end
     else
-      flash[:register_error]=reg.errors.full_messages
+      redirect_to '/ruchi/index?error=5'
+      # p "incorrect password"
+      # p ">>>>>>>>>>>>>>>>>>>>>>>>"
     end
+    
   end
 
   
@@ -41,6 +55,32 @@ class RuchiController < ApplicationController
   end
 
 
+  #Login Functionality
+  def login
+   # byebug
+    txtemail = f_params[:email]
+    txtpass = f_params[:pass]
+    #p 'User ID '+txtemail
+    dearUser = User.where(email: txtemail).first
+    #p @dearUser[:id]
+
+    
+    if(txtpass == dearUser.pass)
+      session[:user_id]=dearUser.id
+      session[:mail]=dearUser.email
+      
+      userid= dearUser.id
+
+      redirect_to "/appuser/index?user="+userid.to_s
+      
+    else
+      redirect_to '/users/showLogin?error=1'
+    end
+
+  end 
+
+
+
   def ViewUser
     @title = "User"
 
@@ -50,7 +90,10 @@ class RuchiController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:fname, :lname,:email,:pass)
+      params.require(:user).permit(:fname, :lname,:email,:pass, :repass)
+      
     end
-
+    def f_params
+      params.require(:f).permit(:email,:pass)
+    end
 end

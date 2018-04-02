@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+
+ 
+
+  get 'appuser/index'
+
   root 'my_home#index'
   #Show Login Page
   get 'ruchi/showLogin'
@@ -18,5 +24,5 @@ Rails.application.routes.draw do
   # Ajax Call 
   post "ruchi/JsonTest"
   get "ruchi/editm"
-
+  post "ruchi/login"
 end
