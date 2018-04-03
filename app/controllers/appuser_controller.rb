@@ -5,11 +5,11 @@ class AppuserController < ApplicationController
 
   def index
     #byebug
-    session[:ravi]=params[:user]
+    
     dearUser = User.where(id: params[:user]).first
     #p "mY PARAMETER==========" +params[:user].to_s
 
-   
+    session[:ravi]=dearUser.id
 
     if(session[:ravi]!=nil)
       @title=dearUser.fname.to_s  
@@ -20,8 +20,22 @@ class AppuserController < ApplicationController
   end
 
   def destroy
+    #byebug
     reset_session
-    redirect_to "/"
+    session[:ravi] = nil
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    redirect_to "/article/index"
+  end
+
+  def logout
+    #cbyebug
+    # if(session[:ravi]==nil)
+    #   redirect_to "/appuser/logout"
+    # else
+
+    #end
   end
 
 

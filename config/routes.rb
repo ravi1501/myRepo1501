@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'destroy_session/index'
+
   get 'appuser/index'
 
   root 'my_home#index'
@@ -24,4 +26,9 @@ Rails.application.routes.draw do
   get "ruchi/editm"
   #Login View
   post "ruchi/login"
+  #Destroy User Session
+  get "appuser/destroy"
+
+  get "appuser/logout"
+ 
 end

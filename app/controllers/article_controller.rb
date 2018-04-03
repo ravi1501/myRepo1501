@@ -1,5 +1,8 @@
 class ArticleController < ApplicationController
-  layout 'MyLayout'
+ 
   def index
+    # if(session[:ravi]==nil)
+    #   redirect_to "/"
+    # end
   end
 end

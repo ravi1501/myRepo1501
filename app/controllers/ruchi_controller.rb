@@ -85,6 +85,8 @@ class RuchiController < ApplicationController
 
   end
 
+  
+
   private
     def user_params
       params.require(:user).permit(:fname, :lname,:email,:pass, :repass)
